@@ -12,33 +12,31 @@ export class App extends Component {
   };
 
   handleLeaveFeedBack = e => {
-    // console.log('this', this, 'event target', e.target.dataset.feedback);
-    const feedback = e.target.dataset.feedback;
-    this.setState(prevState => {
-      // console.log('prevstate', prevState);
-      return {
-        [feedback]: prevState[feedback] + 1,
-      };
-    });
+    const name = e.currentTarget.name;
+    // console.log('name', name);
+    this.setState(prevState => ({
+      [name]: prevState[name] + 1,
+    }));
   };
 
-  countTotalFeedback = values => {
+  countTotalFeedback = () => {
+    const values = Object.values(this.state);
     return values.reduce((acc, value) => acc + value);
   };
 
-  countPositiveFeedbackPercentage = (good, total) => {
-    return Math.round((good / total) * 100);
+  countPositiveFeedbackPercentage = () => {
+    return Math.round((this.state.good / this.countTotalFeedback()) * 100);
   };
 
   render() {
     const options = Object.keys(this.state);
-    const values = Object.values(this.state);
+    // const values = Object.values(this.state);
     const { good, neutral, bad } = this.state;
 
-    const total = this.countTotalFeedback(values);
-    const positiveValue = this.countPositiveFeedbackPercentage(good, total);
+    const total = this.countTotalFeedback();
+    const positiveValue = this.countPositiveFeedbackPercentage();
 
-    // console.log('state', this.state);
+    // console.log('countTotalFeedback()', this.countTotalFeedback());
     // console.log('values', values);
 
     return (
