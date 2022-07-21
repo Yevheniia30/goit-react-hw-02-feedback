@@ -3,7 +3,7 @@ import s from './FeedbackOptions.module.css';
 
 export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   // console.log('options', options);
-
+  // eslint-disable-next-line no-native-reassign
   return (
     <>
       {options.map(item => (
