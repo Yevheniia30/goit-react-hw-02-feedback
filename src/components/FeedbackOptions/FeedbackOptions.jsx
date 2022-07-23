@@ -10,9 +10,9 @@ export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
         <button
           key={item}
           type="button"
-          name={item}
+          // name={item}
           className={[s['btn'], s[`${item}`]].join(' ')}
-          onClick={onLeaveFeedback}
+          onClick={() => onLeaveFeedback(item)}
           // data-feedback={item}
         >
           {item}
